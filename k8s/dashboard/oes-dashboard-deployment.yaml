@@ -32,7 +32,7 @@ spec:
           name: dashboard-config
           subPath: userGroups.yml
       imagePullSecrets:
-      - name: platform-secret
+      - name: opsmx11-secret
       volumes:
       - name: dashboard-config
         configMap:
