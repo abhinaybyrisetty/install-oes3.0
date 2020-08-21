@@ -1,0 +1,45 @@
+apiVersion: v1
+data:
+  gate-local.yml: |
+    server:
+      tomcat:
+        httpsServerPort: X-Forwarded-Port
+        internalProxies: .*
+        protocolHeader: X-Forwarded-Proto
+        remoteIpHeader: X-Forwarded-For
+  gate.yml: |
+    services:
+      opsmx:
+        baseUrl: http://sapor:8085
+        enabled: true
+      autopilot:
+        baseUrl: http://autopilot:8090
+        enabled: true
+      platform:
+        baseUrl: http://oes-platform:8095
+        userGroupApiPath: /platformservice/v1/users/{username}/usergroups/importAndCache
+        enabled: true
+    security:
+      basic:
+        enabled: true
+      user: {}
+    cors:
+      allowed-origins-pattern: ^https?://(?:localhost|OES_UI_LOADBALANCER_IP|opsmx.com)(?::[1-9]\d*)?/?
+    ldap:
+      enabled: true
+      url: ldap://oes-ldap:9595/DC=example,DC=com
+      userDnPattern: uid={0},ou=Users
+    authn:
+      mode: token
+    google: {}
+    logging:
+      level:
+        com.netflix.spinnaker.gate.security: DEBUG
+        org.springframework.security: DEBUG
+        org.springframework.web: DEBUG
+    redis:
+      connection: redis://redis-master:6379
+
+kind: ConfigMap
+metadata:
+  name: oes-gate-config

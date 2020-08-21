@@ -1,0 +1,41 @@
+
+apiVersion: v1
+data:
+  application.yml: |
+    spring:
+      profiles: test
+    name: Dashboard-Service
+    feign:
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout: 5000
+            loggerLevel: basic
+        oes:
+          url: http://sapor:8085
+        autopilot:
+          url: http://autopilot:8090
+        name: dashboardservice
+        platformservice:
+          url: http://oes-platform:8095/
+    opsmx:
+      dashboard:
+        installation:
+          mode: OES-AP
+
+  userGroups.yml: |
+    userGroups:
+      - name: group1
+        users:
+          - user1
+          - user2
+      - name: group2
+        users:
+          - user2
+          - user3
+          - user4
+          
+kind: ConfigMap
+metadata:
+  name: dashboardconfig

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: oes-dashboard
+  name: oes-dashboard
+spec:
+  type: ClusterIP
+  ports:
+  - name: oes-dashboard
+    protocol: TCP
+    port: 8094
+    targetPort: 8094
+  selector:
+    app: oes-dashboard

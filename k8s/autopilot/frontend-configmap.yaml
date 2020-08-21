@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  app.config.js: |
+    var AppConfig = {
+    	getBaseUrl:function() {
+    		return "//autopilot:8090";
+    	}
+    }
+
+kind: ConfigMap
+metadata:
+  name: autopilotfrontendconfig

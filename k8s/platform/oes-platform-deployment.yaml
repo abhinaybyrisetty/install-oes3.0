@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: oes-platform
+  name: oes-platform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oes-platform
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: oes-platform
+    spec:
+      containers:
+      - image: opsmx11/platform-service:master-202008211249
+        name: platform-service
+        ports:
+        - containerPort: 8095
+          protocol: TCP
+        env:
+        - name: CONF_DIR
+          value: /opsmx/conf/
+        volumeMounts:
+        - mountPath: /opsmx/conf/application.yml
+          name: platform-config
+          subPath: application.yml
+        - mountPath: /opsmx/conf/userGroups.yml
+          name: platform-config
+          subPath: userGroups.yml
+      imagePullSecrets:
+      - name: opsmx11-secret
+      volumes:
+      - name: platform-config
+        configMap:
+          name: platformconfig

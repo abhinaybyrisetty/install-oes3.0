@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: oes-ldap
+  name: oes-ldap
+spec:
+  type: ClusterIP
+  ports:
+  - name: oes-ldap
+    protocol: TCP
+    port: 9595
+    targetPort: 3389
+  selector:
+    app: oes-ldap

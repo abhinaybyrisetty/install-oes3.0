@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: oes
+    component: oes-ui
+  name: oes-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oes
+      component: oes-ui
+  template:
+    metadata:
+      labels:
+        app: oes
+        component: oes-ui
+    spec:
+      initContainers:
+      - env:
+        - name: EXTERNAL_IP_CHECK_DELAY
+          value: "120"
+        - name: SPINNAKER_SETUP_DELAY
+          value: "10"
+        image: opsmx11/oes-init:v2
+        imagePullPolicy: Always
+        name: oes-ui-init
+        command: ["/home/config_endpoint.sh"]
+        args: ["oes-ui"]
+        volumeMounts:
+        - mountPath: /config
+          name: config-temp
+        - mountPath: /var/www/html/assets/config
+          name: config-dir
+      containers:
+      - image: opsmx11/oes-ui:v0.202008211005
+        name: oes-ui
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: config-dir
+          mountPath: /var/www/html/assets/config
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 5
+      imagePullSecrets:
+      - name: opsmx11-secret
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: oes-ui-config
+        name: config-temp
+      - emptyDir: {}
+        name: config-dir
