@@ -19,6 +19,9 @@ data:
         baseUrl: http://oes-platform:8095
         userGroupApiPath: /platformservice/v1/users/{username}/usergroups/importAndCache
         enabled: true
+      dashboard:
+        baseUrl: http://oes-dashboard:8094
+        enabled: true
     security:
       basic:
         enabled: true
@@ -29,6 +32,9 @@ data:
       enabled: true
       url: ldap://oes-ldap:9595/DC=example,DC=com
       userDnPattern: uid={0},ou=Users
+    file:
+      enabled: false
+      url: /platformservice/v1/users/authenticate
     authn:
       mode: token
     google: {}
