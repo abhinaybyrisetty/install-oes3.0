@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         - name: opsmx11-secret
       containers:
-        - image: opsmx11/autopilot:master-202008210408
+        - image: opsmx11/autopilot:master-202008271707
           imagePullPolicy: IfNotPresent
           name: autopilot
           ports:
