@@ -24,18 +24,6 @@ data:
         installation:
           mode: OES-AP
 
-  userGroups.yml: |
-    userGroups:
-      - name: group1
-        users:
-          - user1
-          - user2
-      - name: group2
-        users:
-          - user2
-          - user3
-          - user4
-          
 kind: ConfigMap
 metadata:
-  name: dashboardconfig
+  name: oes-dashboard-config

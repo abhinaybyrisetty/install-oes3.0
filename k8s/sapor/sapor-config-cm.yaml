@@ -57,6 +57,128 @@ data:
       adminPassword:
       authnEnabled: false
 
+  charts.yml: |
+    charts:
+      - chart:
+          id: 1
+          name: Pipeline Status
+          displayName: Pipeline Status
+          type: stacket-horizontal-bar-chart
+          showGridLines: true
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          xAxis:
+            name: count
+            label: count
+            unit: count
+          yAxis:
+            name: pipelines
+            label: pipelines
+            unit: pipelines
+      - chart:
+          id: 2
+          name: Successful Pipelines
+          displayName: Successful Pipelines
+          type: stacket-horizontal-bar-chart
+          showGridLines: true
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          xAxis:
+            name: count
+            label: count
+            unit: count
+          yAxis:
+            name: pipelines
+            label: pipelines
+            unit: pipelines
+      - chart:
+          id: 3
+          name: Failed Pipelines
+          displayName: Failed Pipelines
+          type: stacket-horizontal-bar-chart
+          showGridLines: true
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          xAxis:
+            name: count
+            label: count
+            unit: count
+          yAxis:
+            name: pipelines
+            label: pipelines
+            unit: pipelines
+      - chart:
+          id: 4
+          name: Pipeline Speed
+          displayName: Pipeline Speed
+          type: area_chart
+          xAxis:
+            name: test
+            label: test
+            unit: test
+          yAxis:
+            name: test
+            label: test
+            unit: test
+      - chart:
+          id: 5
+          name: Rollback Services
+          displayName: Rollback Services
+          type: horizontal-bar-chart
+          showGridLines: true
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          gradient: true
+          xAxis:
+            name: test
+            label: test
+            unit: test
+          yAxis:
+            name: test
+            label: test
+            unit: test
+      - chart:
+          id: 6
+          name: Automated Verification
+          displayName: Automated Verification
+          type: pie-chart
+          showGridLines: true
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          animations: true
+          xAxis:
+            name: test
+            label: time
+            unit: test
+          yAxis:
+            name: test
+            label: count
+            unit: test
+      - chart:
+          id: 7
+          name: Manual Judgement Time
+          displayName: Manual Judgement Time
+          type: area_chart
+          xAxis:
+            name: test
+            label: test
+            unit: test
+          yAxis:
+            name: test
+            label: test
+            unit: test
+
+    filters:
+      days:
+        - 1
+        - 7
+        - 30
+
 kind: ConfigMap
 metadata:
   name: sapor-config

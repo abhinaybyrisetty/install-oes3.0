@@ -28,12 +28,10 @@ spec:
         - mountPath: /opsmx/conf/application.yml
           name: dashboard-config
           subPath: application.yml
-        - mountPath: /opsmx/conf/userGroups.yml
-          name: dashboard-config
-          subPath: userGroups.yml
+
       imagePullSecrets:
       - name: opsmx11-secret
       volumes:
       - name: dashboard-config
         configMap:
-          name: dashboardconfig
+          name: oes-dashboard-config

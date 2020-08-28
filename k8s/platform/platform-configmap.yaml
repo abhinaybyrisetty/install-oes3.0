@@ -6,15 +6,16 @@ data:
       datasource:
         driver-class-name: org.postgresql.Driver
         hikari:
-          connection-timeout: 30000
-          idle-timeout: 600000
-          max-lifetime: 1000
-          maxLifetime: 1800000
+          connection-timeout: 5000
+          idleTimeout: 300000
+          maxLifetime: 600000
+          minimumIdle: 3
+          maximumPoolSize: 5
         test-on-borrow: true
         testWhileIdle: true
         url: jdbc:postgresql://db-opsmx:5432/platformdb
         username: postgres
-        password: postgres
+        password: networks123
       jpa:
         hibernate:
           ddl-auto: update
@@ -33,10 +34,11 @@ data:
       datasource:
         driver-class-name: org.postgresql.Driver
         hikari:
-          connection-timeout: 30000
-          idle-timeout: 600000
-          max-lifetime: 1000
-          maxLifetime: 1800000
+          connectionTimeout: 5000
+          idleTimeout: 300000
+          maxLifetime: 600000
+          minimumIdle: 3
+          maximumPoolSize: 5
         test-on-borrow: true
         testWhileIdle: true
         url: jdbc:postgresql://db-opsmx:5432/platformdb
@@ -60,10 +62,11 @@ data:
       datasource:
         driver-class-name: org.postgresql.Driver
         hikari:
-          connection-timeout: 30000
-          idle-timeout: 600000
-          max-lifetime: 1000
-          maxLifetime: 1800000
+          connectionTimeout: 5000
+          idleTimeout: 300000
+          maxLifetime: 600000
+          minimumIdle: 3
+          maximumPoolSize: 5
         test-on-borrow: true
         testWhileIdle: true
         url: jdbc:postgresql://db-opsmx:5432/platformdb
@@ -100,10 +103,11 @@ data:
       datasource:
         driver-class-name: org.postgresql.Driver
         hikari:
-          connection-timeout: 30000
-          idle-timeout: 600000
-          max-lifetime: 1000
-          maxLifetime: 1800000
+          connectionTimeout: 5000
+          idleTimeout: 300000
+          maxLifetime: 600000
+          minimumIdle: 3
+          maximumPoolSize: 5
         test-on-borrow: true
         testWhileIdle: true
         url: jdbc:postgresql://db-opsmx:5432/platformdb
@@ -143,7 +147,17 @@ data:
           - user2
           - user3
           - user4
+  users.yml: |
+    users:
+      - username: user1
+        password: user1p
+      - username: user2
+        password: user2p
+      - username: user3
+        password: user3p
+      - username: user4
+        password: user4p
 
 kind: ConfigMap
 metadata:
-  name: platformconfig
+  name: oes-platform-config
