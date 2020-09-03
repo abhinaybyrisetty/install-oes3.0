@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  creationTimestamp: "2020-09-03T06:40:19Z"
+  generation: 3
+  labels:
+    app: oes
+    version: "3.0"
+  name: oes-ingress
+  namespace: nightly
+  resourceVersion: "45930361"
+  selfLink: /apis/extensions/v1beta1/namespaces/nightly/ingresses/oes-ingress
+  uid: 6b0760c4-c529-4473-a926-8832d60a37cc
+spec:
+  rules:
+  - host: nightly-oes3.opsmx.com
+    http:
+      paths:
+      - backend:
+          serviceName: oes-ui
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - nightly-oes3.opsmx.com
+    secretName: godaddy
+status:
+  loadBalancer:
+    ingress:
+    - ip: 40.90.217.183
