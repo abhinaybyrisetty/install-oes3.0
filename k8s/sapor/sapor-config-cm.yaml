@@ -63,6 +63,7 @@ data:
           id: 1
           name: Pipeline Status
           displayName: Pipeline Status
+          timeExists: false
           type: stacket-horizontal-bar-chart
           showGridLines: true
           showXAxisLabel: true
@@ -80,11 +81,15 @@ data:
           id: 2
           name: Successful Pipelines
           displayName: Successful Pipelines
-          type: stacket-horizontal-bar-chart
+          timeExists: false
+          type: horizontal-bar-chart
           showGridLines: true
           showXAxisLabel: true
           showYAxisLabel: true
           tooltipDisabled: true
+          colorScheme:
+            domain:
+              - "#33b3f1"
           xAxis:
             name: count
             label: count
@@ -97,11 +102,15 @@ data:
           id: 3
           name: Failed Pipelines
           displayName: Failed Pipelines
-          type: stacket-horizontal-bar-chart
+          type: horizontal-bar-chart
+          timeExists: false
           showGridLines: true
           showXAxisLabel: true
           showYAxisLabel: true
           tooltipDisabled: true
+          colorScheme:
+            domain:
+              - "#33b3f1"
           xAxis:
             name: count
             label: count
@@ -112,66 +121,134 @@ data:
             unit: pipelines
       - chart:
           id: 4
-          name: Pipeline Speed
-          displayName: Pipeline Speed
-          type: area_chart
+          name: Fastest Pipelines
+          displayName: Fastest Pipelines
+          type: horizontal-bar-chart
+          timeExists: true
+          showGridLines: true
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          colorScheme:
+            domain:
+              - "#33b3f1"
           xAxis:
-            name: test
-            label: test
-            unit: test
+            name: time
+            label: time
+            unit: time
           yAxis:
-            name: test
-            label: test
-            unit: test
+            name: pipelines
+            label: pipelines
+            unit: pipelines
       - chart:
           id: 5
-          name: Rollback Services
-          displayName: Rollback Services
+          name: Slowest Pipelines
+          displayName: Slowest Pipelines
+          type: horizontal-bar-chart
+          timeExists: true
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          gradient: true
+          colorScheme:
+            domain:
+              - "#33b3f1"
+          xAxis:
+            name: time
+            label: time
+            unit: time
+          yAxis:
+            name: pipelines
+            label: pipelines
+            unit: pipelines
+      - chart:
+          id: 6
+          name: Automated Verification
+          displayName: Automated Verification
           type: horizontal-bar-chart
           showGridLines: true
           showXAxisLabel: true
           showYAxisLabel: true
           tooltipDisabled: true
-          gradient: true
-          xAxis:
-            name: test
-            label: test
-            unit: test
-          yAxis:
-            name: test
-            label: test
-            unit: test
-      - chart:
-          id: 6
-          name: Automated Verification
-          displayName: Automated Verification
-          type: pie-chart
-          showGridLines: true
-          showXAxisLabel: true
-          showYAxisLabel: true
-          tooltipDisabled: true
           animations: true
+          timeExists: false
+          colorScheme:
+            domain:
+              - "#33b3f1"
           xAxis:
-            name: test
-            label: time
-            unit: test
-          yAxis:
-            name: test
+            name: count
             label: count
-            unit: test
+            unit: count
+          yAxis:
+            name: stage
+            label: stage
+            unit: stage
       - chart:
           id: 7
           name: Manual Judgement Time
           displayName: Manual Judgement Time
-          type: area_chart
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          animations: true
+          showGridLines: true
+          type: horizontal-bar-chart
+          timeExists: true
+          colorScheme:
+            domain:
+              - "#33b3f1"
           xAxis:
-            name: test
-            label: test
-            unit: test
+            name: time
+            label: time
+            unit: time
           yAxis:
-            name: test
-            label: test
-            unit: test
+            name: pipelines
+            label: pipelines
+            unit: pipelines
+      - chart:
+          id: 8
+          name: Rollback Services
+          displayName: Rollback Services
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          animations: true
+          showGridLines: true
+          type: pie-chart
+          timeExists: false
+          colorScheme:
+            domain:
+              - "#33b3f1"
+          xAxis:
+            name: count
+            label: count
+            unit: count
+          yAxis:
+            name: pipelines
+            label: pipelines
+            unit: pipelines
+      - chart:
+          id: 9
+          name: Health Status
+          displayName: Health Status
+          showXAxisLabel: true
+          showYAxisLabel: true
+          tooltipDisabled: true
+          animations: true
+          showGridLines: true
+          type: area-chart
+          timeExists: true
+          colorScheme:
+            domain:
+              - "#33b3f1"
+          xAxis:
+            name: time
+            label: time
+            unit: time
+          yAxis:
+            name: pipelines
+            label: pipelines
+            unit: pipelines
 
     filters:
       days:

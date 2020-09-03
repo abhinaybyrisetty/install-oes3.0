@@ -23,6 +23,7 @@ data:
           dialect: org.hibernate.dialect.PostgreSQLDialect
         show-sql: true
     name: Platform-Service
+    rbacEnabled: true
     userGroup:
       cache: inMemory
     user:
@@ -51,6 +52,7 @@ data:
           dialect: org.hibernate.dialect.PostgreSQLDialect
         show-sql: true
     name: Platform-Service
+    rbacEnabled: true
     userGroup:
       cache: inMemory
     user:
@@ -79,6 +81,7 @@ data:
           dialect: org.hibernate.dialect.PostgreSQLDialect
         show-sql: true
     name: Platform-Service
+    rbacEnabled: true
     userGroup:
       cache: redis
     user:
@@ -120,6 +123,7 @@ data:
           dialect: org.hibernate.dialect.PostgreSQLDialect
         show-sql: true
     name: Platform-Service
+    rbacEnabled: true
     userGroup:
       cache: redis
     user:
