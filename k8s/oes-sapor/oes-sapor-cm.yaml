@@ -4,59 +4,6 @@ data:
     services:
       audit:
         applicationRefreshIntervalMs: 50000
-  oes.yml: |
-    server:
-      port: 8085
-      compression:
-        enabled: true
-    feign:
-      client:
-        config:
-          default:
-            connectTimeout: 5000
-            readTimeout: 5000
-            loggerLevel: basic
-        platformservice:
-          name: platformservice
-          url: http://oes-platform:8095/
-  persistence.yml: |
-    spring:
-      datasource:
-        url: jdbc:postgresql://db-opsmx:5432/oesdb
-        username: postgres
-        password: networks123
-        driver-class-name: org.postgresql.Driver
-        testWhileIdle: true
-        test-on-borrow: true
-        hikari:
-          connection-timeout: 30000
-          idle-timeout: 600000
-          max-lifetime: 1000
-          maxLifetime: 1800000
-      jpa:
-        show-sql: true
-        hibernate:
-          ddl-auto: update # delete this property after table creation
-        properties:
-          hibernate:
-            dialect: org.hibernate.dialect.PostgreSQLDialect
-
-    logging:
-      level:
-        com:
-          zaxxer:
-            hikari: DEBUG
-  spinnaker.yaml: |
-    spinnaker:
-      base-url: http://40.64.77.192:9000/gate
-      external-base-url: http://40.64.77.192:9000/gate
-      username: admin
-      password: OpsMx@123
-      adminLoginEnabled: false
-      adminUsername:
-      adminPassword:
-      authnEnabled: false
-
   charts.yml: |
     charts:
       - chart:
@@ -255,7 +202,58 @@ data:
         - 1
         - 7
         - 30
+  oes.yml: |
+    server:
+      port: 8085
+      compression:
+        enabled: true
+    feign:
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout: 5000
+            loggerLevel: basic
+        platformservice:
+          name: platformservice
+          url: http://oes-platform:8095/
+  persistence.yml: |
+    spring:
+      datasource:
+        url: jdbc:postgresql://db-opsmx:5432/oesdb
+        username: postgres
+        password: networks123
+        driver-class-name: org.postgresql.Driver
+        testWhileIdle: true
+        test-on-borrow: true
+        hikari:
+          connection-timeout: 30000
+          idle-timeout: 600000
+          max-lifetime: 1000
+          maxLifetime: 1800000
+      jpa:
+        show-sql: true
+        hibernate:
+          ddl-auto: update # delete this property after table creation
+        properties:
+          hibernate:
+            dialect: org.hibernate.dialect.PostgreSQLDialect
 
+    logging:
+      level:
+        com:
+          zaxxer:
+            hikari: DEBUG
+  spinnaker.yaml: |
+    spinnaker:
+      base-url: http://52.149.28.74:9000/gate
+      external-base-url: http://52.149.28.74:9000/gate
+      username: admin
+      password: OpsMx@123
+      adminLoginEnabled: false
+      adminUsername:
+      adminPassword:
+      authnEnabled: false
 kind: ConfigMap
 metadata:
   name: oes-sapor-config

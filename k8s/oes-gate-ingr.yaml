@@ -4,8 +4,7 @@ metadata:
   labels:
     app: oes
     version: "3.0"
-  name: oes-ingress-gate
-  namespace: nightly
+  name: oes-gate-ingress
 spec:
   rules:
   - host: nightly-oes3-gate.opsmx.com

@@ -43,6 +43,7 @@ spec:
         - name: api-volume
           mountPath: /opt/opsmx/
         readinessProbe:
+          failureThreshold: 6
           tcpSocket:
             port: 8085
           initialDelaySeconds: 120
