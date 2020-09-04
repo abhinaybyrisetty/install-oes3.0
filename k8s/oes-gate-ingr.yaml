@@ -19,7 +19,3 @@ spec:
   - hosts:
     - nightly-oes3-gate.opsmx.com
     secretName: godaddy
-status:
-  loadBalancer:
-    ingress:
-    - ip: 40.90.217.183

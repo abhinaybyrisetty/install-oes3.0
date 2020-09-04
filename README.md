@@ -39,6 +39,8 @@ If I've updated my oes-gate configuration files, I'd have to update my config ma
 kubectl apply -f oes-gate-cm.yaml
 `
 
+Configuration file doesn't get updated in a pod, unless pod restarts after the updation of config map. So, ensure to restart the pod.
+
 > **Tip**: Be very careful with indentation, yaml is very sensitive`
 
 ## Additional Info
