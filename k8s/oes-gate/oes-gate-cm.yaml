@@ -10,7 +10,7 @@ data:
   gate.yml: |
     services:
       opsmx:
-        baseUrl: http://sapor:8085
+        baseUrl: http://oes-sapor:8085
         enabled: true
       autopilot:
         baseUrl: http://autopilot:8090

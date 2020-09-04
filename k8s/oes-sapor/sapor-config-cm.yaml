@@ -258,4 +258,4 @@ data:
 
 kind: ConfigMap
 metadata:
-  name: sapor-config
+  name: oes-sapor-config

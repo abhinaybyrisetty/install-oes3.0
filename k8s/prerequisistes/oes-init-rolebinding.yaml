@@ -1,4 +1,4 @@
-# oes-ui, oes-gate & sapor deployments have init containers that will automatically
+# oes-ui, oes-gate & oes-sapor deployments have init containers that will automatically
 # configure them. Init container require access to view LoadBalancer IPs of corresponding
 # services, use this manifest to give necessary access to the init container
 apiVersion: rbac.authorization.k8s.io/v1

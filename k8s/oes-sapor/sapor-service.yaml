@@ -3,14 +3,14 @@ kind: Service
 metadata:
   labels:
     app: oes
-    component: sapor
-  name: sapor
+    component: oes-sapor
+  name: oes-sapor
 spec:
   type: ClusterIP
   ports:
-  - name: "sapor"
+  - name: "oes-sapor"
     port: 8085
     targetPort: 8085
   selector:
     app: oes
-    component: sapor
+    component: oes-sapor

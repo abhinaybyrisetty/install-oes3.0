@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   labels:
     app: oes
-    component: sapor
-  name: sapor
+    component: oes-sapor
+  name: oes-sapor
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: oes
-      component: sapor
+      component: oes-sapor
   template:
     metadata:
       labels:
         app: oes
-        component: sapor
+        component: oes-sapor
     spec:
       initContainers:
       - env:
@@ -25,7 +25,7 @@ spec:
           value: "10"
         image: opsmx11/oes-init:v2
         imagePullPolicy: Always
-        name: sapor-init
+        name: oes-sapor-init
         command: ["/home/config_endpoint.sh"]
         args: ["sapor"]
         volumeMounts:
@@ -35,7 +35,7 @@ spec:
           name: api-volume
       containers:
       - image: opsmx11/sapor:v0.202009041117
-        name: sapor
+        name: oes-sapor
         ports:
         - containerPort: 8085
           protocol: TCP
@@ -57,7 +57,7 @@ spec:
       - name: opsmx11-secret
       volumes:
       - configMap:
-          name: sapor-config
+          name: oes-sapor-config
         name: config-temp
       - emptyDir: {}
         name: api-volume
