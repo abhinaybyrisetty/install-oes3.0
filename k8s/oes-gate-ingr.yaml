@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: oes
+    version: "3.0"
+  name: oes-ingress-gate
+  namespace: nightly
+spec:
+  rules:
+  - host: nightly-oes3-gate.opsmx.com
+    http:
+      paths:
+      - backend:
+          serviceName: oes-gate
+          servicePort: 8084
+        path: /
+  tls:
+  - hosts:
+    - nightly-oes3-gate.opsmx.com
+    secretName: godaddy
+status:
+  loadBalancer:
+    ingress:
+    - ip: 40.90.217.183
