@@ -246,14 +246,13 @@ data:
             hikari: DEBUG
   spinnaker.yaml: |
     spinnaker:
-      base-url: http://52.149.28.74:9000/gate
-      external-base-url: http://52.149.28.74:9000/gate
+      baseurl: http://40.125.102.163:8084
       username: admin
-      password: OpsMx@123
+      password: opsmx@123
       adminLoginEnabled: false
       adminUsername:
       adminPassword:
-      authnEnabled: false
+      authnEnabled: true
 kind: ConfigMap
 metadata:
   name: oes-sapor-config
