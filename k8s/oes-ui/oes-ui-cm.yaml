@@ -5,6 +5,7 @@ data:
   app-config.json: |
     {
         "endPointUrl":"http://OES_GATE_IP:8084/"
+        "setApplicationInterval": 16000
     }
 
 kind: ConfigMap

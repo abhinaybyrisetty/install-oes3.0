@@ -34,7 +34,7 @@ spec:
         - mountPath: /opt/opsmx/
           name: api-volume
       containers:
-      - image: opsmx11/sapor:v0.202009041117
+      - image: opsmx11/sapor:v0.202009050942
         name: oes-sapor
         ports:
         - containerPort: 8085

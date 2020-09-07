@@ -16,7 +16,7 @@ spec:
         app: oes-platform
     spec:
       containers:
-      - image: opsmx11/platform-service:master-202009041417
+      - image: opsmx11/platform-service:master-202009051438
         name: platform-service
         ports:
         - containerPort: 8095
