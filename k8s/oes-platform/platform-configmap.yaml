@@ -86,7 +86,7 @@ data:
     rbacEnabled: true
     userGroup:
       cache: redis
-      adminGroups: admin, admin1
+      adminGroups: admin, admin1, Administrators
     user:
       source: ldap
     ldap:
