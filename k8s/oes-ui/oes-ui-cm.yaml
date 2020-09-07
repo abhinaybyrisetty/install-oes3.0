@@ -4,7 +4,7 @@ data:
   # IP of oes-gate service; Needn't modify this
   app-config.json: |
     {
-        "endPointUrl":"http://OES_GATE_IP:8084/"
+        "endPointUrl":"http://OES_GATE_IP:8084/",
         "setApplicationInterval": 16000
     }
 
