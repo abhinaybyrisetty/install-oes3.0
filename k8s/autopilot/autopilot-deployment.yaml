@@ -58,3 +58,10 @@ spec:
               port: 8090
             initialDelaySeconds: 30
             periodSeconds: 10
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "250m"
+            limits:
+              memory: "3500Mi"
+              cpu: "1500m"

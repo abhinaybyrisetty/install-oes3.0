@@ -54,6 +54,13 @@ spec:
             port: 8085
           initialDelaySeconds: 180
           periodSeconds: 60
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
       imagePullSecrets:
       - name: opsmx11-secret
       volumes:

@@ -16,7 +16,7 @@ spec:
         app: oes-dashboard
     spec:
       containers:
-      - image: opsmx11/dashboard-service:master-202009030853
+      - image: opsmx11/dashboard-service:master-202009080542
         name: dashboard-service
         ports:
         - containerPort: 8094
@@ -28,7 +28,13 @@ spec:
         - mountPath: /opsmx/conf/application.yml
           name: dashboard-config
           subPath: application.yml
-
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1000Mi"
+            cpu: "1000m"
       imagePullSecrets:
       - name: opsmx11-secret
       volumes:

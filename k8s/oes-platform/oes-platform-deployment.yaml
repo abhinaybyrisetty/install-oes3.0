@@ -15,8 +15,12 @@ spec:
       labels:
         app: oes-platform
     spec:
+      initContainers:
+      - name: init-mydb
+        image: busybox:1.28
+        command: ['sh', '-c', "sleep 30;until nslookup db-opsmx.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for db-opsmx to be up and running; sleep 2; done"]
       containers:
-      - image: opsmx11/platform-service:master-202009051438
+      - image: opsmx11/platform-service:master-202009071200
         name: platform-service
         ports:
         - containerPort: 8095
@@ -35,11 +39,17 @@ spec:
           name: platform-config
           subPath: users.yml
         readinessProbe:
-          failureThreshold: 6
           tcpSocket:
             port: 8095
-          initialDelaySeconds: 120
-          periodSeconds: 30
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1500Mi"
+            cpu: "1500m"
       imagePullSecrets:
       - name: opsmx11-secret
       volumes:
