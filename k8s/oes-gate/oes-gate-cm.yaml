@@ -1,12 +1,5 @@
 apiVersion: v1
 data:
-  gate-local.yml: |
-    server:
-      tomcat:
-        httpsServerPort: X-Forwarded-Port
-        internalProxies: .*
-        protocolHeader: X-Forwarded-Proto
-        remoteIpHeader: X-Forwarded-For
   gate.yml: |
     services:
       opsmx:
@@ -36,7 +29,7 @@ data:
       enabled: false
       url: /platformservice/v1/users/authenticate
     authn:
-      mode: token
+      mode: session
     google: {}
     logging:
       level:
