@@ -10,9 +10,6 @@ spec:
   - name: "cas-service"
     port: 8090
     targetPort: 8090
-  - name: "http"
-    port: 8161
-    targetPort: 8161
   - name: "monitoring-service"
     port: 9090
     targetPort: 9090

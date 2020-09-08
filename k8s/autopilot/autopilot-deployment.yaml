@@ -18,16 +18,10 @@ spec:
         - name: backend-config-volume
           configMap:
             name: autopilotbackendconfig
-        - name: frontend-config-volume
-          configMap:
-            name: autopilotfrontendconfig
-        - name: server-config-volume
-          configMap:
-            name: autopilotserverconfig
       imagePullSecrets:
         - name: opsmx11-secret
       containers:
-        - image: opsmx11/autopilot:master-202009040649
+        - image: opsmx11/autopilot:master-202009081323
           imagePullPolicy: IfNotPresent
           name: autopilot
           ports:
@@ -37,27 +31,24 @@ spec:
             - containerPort: 9090
               name: metricfetcher
               protocol: TCP
-            - containerPort: 8161
-              name: frontend
-              protocol: TCP
           volumeMounts:
           - name: backend-config-volume
-            mountPath: /opt/opsmx/config.properties
-            subPath: config.properties
+            mountPath: /opt/opsmx/application.properties
+            subPath: application.properties
           - name: backend-config-volume
             mountPath: /opt/opsmx/hibernate.cfg.xml
             subPath: hibernate.cfg.xml
-          - name: frontend-config-volume
-            mountPath: /opt/opsmx/app.config.js
-            subPath: app.config.js
-          - name: server-config-volume
-            mountPath: /opt/apache-tomcat/conf/server.xml
-            subPath: server.xml
           readinessProbe:
             tcpSocket:
               port: 8090
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /mgmt/health
+              port: 8090
+            initialDelaySeconds: 120
+            periodSeconds: 60
           resources:
             requests:
               memory: "500Mi"

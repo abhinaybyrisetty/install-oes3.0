@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  config.properties: |
+  application.properties: |
     #########################################################################################################
     #                                      Application configuration
     #########################################################################################################
@@ -8,14 +8,18 @@ data:
     management.endpoints.web.base-path=/mgmt
     management.endpoint.health.show-details=always
     management.endpoint.health.show-components=always
+    management.endpoints.web.exposure.include=health,info,metrics,prometheus
+
+    management.health.elasticsearch.enabled: false
 
     kubernetes.prometheus.metric.label=__name__
     kubernetes.prometheus.host.tagname=exported_container_label_io_kubernetes_pod_name
     kubernetes.prometheus.tomcat.host.tagname=container_label_io_kubernetes_pod_name
-
     aws.prometheus.host.tagname=destination_workload
+
     aws.prometheus.baseline.host.tagvalue=version2a
     aws.prometheus.canary.host.tagvalue=version2b
+
 
     prometheus.metrics.api.path=/api/v1/label/__name__/values
     prometheus.metrics.aggregator=avg
@@ -28,21 +32,21 @@ data:
     prometheus.services=apache,haproxy,http,tomcat
     prometheus.configured.service=istio
     stackdriver.services=tomcat
-    stackdriver.metrics.template.path=/opt/opsmx/base-templates/stackdriver/tomcat-metrics.json
+    stackdriver.metrics.template.path=/opsmx/conf/base-templates/stackdriver/tomcat-metrics.json
     elastic.search.services=apache,tomcat
     #datadog.services=tomcat (datadog services are being read from datadog api by truncating the prefix of each metric name
-    #custom.service.dropdown.value=Custom service
+    custom.service.dropdown.value=
 
-    # Reading hibernate.cfg.xml from file system
-    hibernate.configFilePath=/opt/opsmx/hibernate.cfg.xml
+    #Reading hibernate.cfg.xml from file systems
+    hibernate.configFilePath=/opsmx/conf/hibernate.cfg.xml
 
     #aws.prometheus.hostname=
 
-    # Data science micro service configuration parameters
-    python.server.protocol=https://
+    #Data science micro service configuration parameters
+    python.server.protocol=http://
     python.analysis.url=localhost:5005
 
-    # Data Science Microservice Properties
+    #Data Science Microservice Properties
     datascience.workers.count=4
     datascience.server.address=0.0.0.0:5005
 
@@ -51,39 +55,39 @@ data:
     casservice.baseurl=localhost:8090
     metricservice.baseurl=localhost:9090
 
-    elastic.search.metrics.template.path=/opt/opsmx/elasticsearch_template_format.json
+    elastic.search.metrics.template.path=/opsmx/conf/elasticsearch_template_format.json
     elasticsearch.metrics.sampling.value=10
-    elastic.search.query.template.path=/opt/opsmx/elasticsearch_metric_query_template.json
-    elastic.search.metrics.index.path=/opt/opsmx/elasticsearch_index_template.json
-    elastic.search.kibana.url=http://34.211.233.166:5601/app/kibana#/discover?_g=()&_a=(columns:!(_source),index:METRIC_INDEX,interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',desc))
+    elastic.search.query.template.path=/opsmx/conf/elasticsearch_metric_query_template.json
+    elastic.search.metrics.index.path=/opsmx/conf/elasticsearch_index_template.json
+    elastic.search.kibana.url=http://localhost:5601/app/kibana#/discover?_g=()&_a=(columns:!(_source),index:METRIC_INDEX,interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',desc))
 
-    # Required details for log analysis
-    home.directory=/home/ubuntu/
-    logfiles.base.path=/home/ubuntu/logdata/
-    logfiles.aca.path=/home/ubuntu/acainputs/
-    logfiles.feedback.path=/home/ubuntu/logdata/feedback/
-    logfiles.pca.path=/home/ubuntu/ScoringAndPCA/
-    java.logs.path=/home/ubuntu/logs/
+    #Required details for log analysis
+    home.directory=/opsmx/workdir
+    logfiles.base.path=/opsmx/workdir/logdata/
+    logfiles.aca.path=/opsmx/workdir/acainputs/
+    logfiles.feedback.path=/opsmx/workdir/logdata/feedback/
+    logfiles.pca.path=/opsmx/workdir/ScoringAndPCA/
     k8.logpulling.url=https://api-opsmxcluster-k8s-loca-fsgjhv-1527274479.us-east-2.elb.amazonaws.com/api/v1/namespaces/kube-system/services/elasticsearch-logging/proxy/logstash-*/fluentd/_search
     k8.logpulling.username=admin
     k8.logpulling.password=eX2uNGR55k98mCqobEwUzMIX63Aknm0D
     k8.query.keyword=kubernetes.pod_name.keyword
     k8.config.filepath=/home/ubuntu/.kube/
-    elasticsearch.k8.log.query.file.path=/opt/opsmx/base-templates/elasticsearch/elasticsearch_log_query.json
-    elasticsearch.log.query.file.path=/opt/opsmx/base-templates/elasticsearch/elasticsearch_log_query.json
+    elasticsearch.k8.log.query.file.path=/opsmx/conf/base-templates/elasticsearch/elasticsearch_log_query.json
+    elasticsearch.log.query.file.path=/opsmx/conf/base-templates/elasticsearch/elasticsearch_log_query.json
     elasticsearch.logpulling.url=/_search?scroll=2m
     dockerswarm.logpulling.scroll.url=/_search/scroll
-    dockerswarm.query.file.path=/opt/opsmx/base-templates/elasticsearch/elasticsearch_swarmlog_query.json
+    dockerswarm.query.file.path=/opsmx/conf/base-templates/elasticsearch/elasticsearch_swarmlog_query.json
     elasticsearch.query.keyword=container_id.keyword
     elasticsearch.response.keywords=message,exception.exception_message,log
     elasticsearch.log.filesize.in.MB=100
+    elasticsearch.fetchBatchSize=5000
 
-    # Sumologic detials
+    #sumologic detials
 
     sumologic.logpulling.url1=https://api.
     sumologic.logpulling.url2=.sumologic.com/api/v1/search/jobs
     sumologic.logpulling.us1=https://api.sumologic.com/api/v1/search/jobs
-    sumologic.log.query.file.path=/opt/opsmx/base-templates/sumologic/sumologic_log_query.json
+    sumologic.log.query.file.path=/opsmx/conf/base-templates/sumologic/sumologic_log_query.json
     sumologic.response.keywords=message,exception.exception_message,log
     sumologic.log.filesize.in.MB=100
     sumologic.accessid.keyword=dummyaccessid
@@ -94,12 +98,13 @@ data:
     sumologic.query.url.us1=https://service.sumologic.com/ui/#/search/@<starttime>,<endtime>@_sourceCategory=<pod>
     sumologic.query.data=/messages?offset=0&limit=10000
 
-    # Stackdriver details
+    #stackdriver details
     stackdriver.services=tomcat
-    stackdriver.metrics.template.path=/opt/opsmx/base-templates/stackdriver/apm.json
+    stackdriver.metrics.template.path=/opsmx/conf/base-templates/stackdriver/apm.json
     stackdriver.query.url=https://console.cloud.google.com/logs/#/search/@<logfilter>
 
-    # Kibana details
+
+    #Kibana details
     kibana.query.url=/app/kibana#/discover?_g=(refreshInterval:(pause:!t,value:0),time:(from:'<starttime>',mode:absolute,to:'<endtime>'))&_a=(columns:!(_source),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'<index>',key:_index,negate:!f,params:(query:'<indexvalue>',type:phrase),type:phrase,value:'<indexvalue>'),query:(match:(_index:(query:'<indexvalue>',type:phrase)))),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'<index>',key:<scope>,negate:!f,params:!('<scopevalue>'),type:phrases,value:'<scopevalue>'),query:(bool:(minimum_should_match:1,should:!((match_phrase:(<scope>:'<scopevalue>'))))))),index:'<index>',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',desc))
 
     kibana.query=/app/kibana#/discover?_g=()&_a=(columns:!(_source),index:<index>,interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',desc))
@@ -107,26 +112,26 @@ data:
     elasticsearch.index=logstash-pipeline-*
     log.template=log-template
     metric.template=metric-template
-    log.analysis.file=/home/ubuntu/logdata/logAnalysis.py
-    canary.analysis.filepath=/home/ubuntu/Python-code/canary/canaryplusversion.py
-    log.feedback.analysis.file=/home/ubuntu/logdata/feedbackAnalysis.py
+    log.analysis.file=/opsmx/workdir/logdata/logAnalysis.py
+    canary.analysis.filepath=/opsmx/workdir/Python-code/canary/canaryplusversion.py
+    log.feedback.analysis.file=/opsmx/workdir/logdata/feedbackAnalysis.py
     python.version=python
 
-    # Retry the log query attributes
+    #Retry the log query attributes
     totalDurationInMinutes=6
     intervalDurationInSeconds=60
 
     newrelic.metric.template.filter.params=WebTransaction(.*)GET(.*),WebTransaction(.+)POST(.*),WebTransaction(.+)PUT(.*),WebTransaction(.+)DELETE(.*),WebTransaction(.+)PATCH(.*)
-    newrelic.metrics.template.path=/opt/opsmx/base-templates/newrelic/newrelic-apm-rest.json
+    newrelic.metrics.template.path=/opsmx/conf/base-templates/newrelic/newrelic-apm-rest.json
     #newrelic.metric.template.filter.param=/greeting
     newrelic.group.metric.delimiter=;
 
     #datadog metric analysis required details
     datadog.metric.tag=host
-    datadog.metrics.template.path=/opt/opsmx/base-templates/datadog/
-    datadog.infra.metrics.template.path=/opt/opsmx/base-templates/datadog/infra.json
+    datadog.metrics.template.path=/opsmx/conf/base-templates/datadog/
+    datadog.infra.metrics.template.path=/opsmx/conf/base-templates/datadog/infra.json
     datadog.timeseries.metricdata.client.url=https://api.datadoghq.com/api/v1/query
-    datadog.apm.metrics.template.path=/opt/opsmx/base-templates/datadog/apm.json
+    datadog.apm.metrics.template.path=/opsmx/conf/base-templates/datadog/apm.json
     datadog.timeseries.metricdata.host=api.datadoghq.com
     datadog.application.weeks=1
 
@@ -138,17 +143,51 @@ data:
     basedata.filepath=/home/ubuntu/BaseData/USER_NAME_PLACE_HOLDER/TEMPLATE_NAME_PLACE_HOLDER/Data
     #time period is in hours
     basedata.time.period=-24
-    system.r.path=/usr/bin/Rscript
-    weights.computation.filepath=/home/ubuntu/long_term_weights.R
 
-    sonar.metrics.file.path=/opt/opsmx/base-templates/sonar/sonar_metrics.json
-    auditEnabled=false
+    sonar.metrics.file.path=/opsmx/conf/base-templates/sonar/sonar_metrics.json
 
-    # timing parameters for analysis retries.
+    python.algorithm=spell
+
+    #ldap login attributes
+    isLdapAuthEnabled=false
+    ldap.url=
+    ldap.base.dn=
+    ldap.authPrepend=
+    ldap.userPrepend=
+    ldap.user.filter.pattern=
+    ldap.admin.user.groups=Administrators
+    ldap.userIdentity=cn
+    ldap.userGroupIdentity=memberOf
+    ldap.userDisplayName=displayName
+
+    #ldap.userIdentity=cn
+    #ldap.userGroupIdentity=memberOf
+
+    #SSL certificate details
+    #server.ssl.key-store: keystore.p12
+    #server.ssl.key-store-password: OpsMx@123
+    #server.ssl.keyStoreType: PKCS12
+    #server.ssl.keyAlias: tomcat
+
+    #
+    # Timing parameters for analysis retries.
+    #
+
+    # Frequency of update of jobs currently owned by this instance.
     opsmx.job.refreshMilliseconds=30000
+
+    # How old a job entry has to be before it can be claimed by a new instance
     opsmx.job.timeoutMilliseconds=120000
+
+    # The max number of abandoned jobs we can claim at once.
     opsmx.job.restartJobLimit=5
+
+    # How often we check for abandoned jobs.
     opxmx.job.staleCheckMilliseconds=60000
+
+    # The maximum number of times we will retry a single job before marking it failed.
+    opsmx.job.maxRetries=3
+
 
     #Thread limit for calls to analysis servicec
     analysis.threadpool.size=4
@@ -156,33 +195,13 @@ data:
     # metric multi service constants
     multiservice.monitoring.service.url=localhost:9090/metricdatapath
 
-    #######################################################################################
-    #           Additional configuration that can be changed via values.yaml
-    #######################################################################################
-
-    # Data science analysis algorithm, typically spell/perl are specified
-    python.algorithm=spell
-
-    # Spinnaker information
-    spinnaker.login.admin.enabled=false
-    spinnaker.baseurl=http://40.64.77.192:9000/gate/
-    spinnaker.login.admin.username=admin
-    spinnaker.login.admin.password=OpsMx@123
-
-    # Data source attributes
-    spring.datasource.url=jdbc:postgresql://db-opsmx:5432/opsmx
-    spring.datasource.username=postgres
-    spring.datasource.password=networks123
-
-    # LDAP login attributes
-    isLdapAuthEnabled=
-    ldap.url=ldap://oes-ldap:3389
-    ldap.base.dn=DC=example,DC=com
-    ldap.user.filter.pattern=(&(objectclass=person)(cn=USERNAME))
-    ldap.admin.user.groups=Administrators
-
-    # Enable Build Analysis
+    #Enable Build Analysis
     build.analysis=false
+
+    production.monitoring=false
+    java.logs.path=
+
+    server.host.dns.name=
 
 
   hibernate.cfg.xml: |
