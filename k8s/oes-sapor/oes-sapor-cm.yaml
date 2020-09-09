@@ -220,7 +220,7 @@ data:
   persistence.yml: |
     spring:
       datasource:
-        url: jdbc:postgresql://db-opsmx:5432/oesdb
+        url: jdbc:postgresql://oes-db:5432/oesdb
         username: postgres
         password: networks123
         driver-class-name: org.postgresql.Driver

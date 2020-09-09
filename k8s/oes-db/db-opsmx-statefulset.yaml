@@ -2,32 +2,32 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   labels:
-    app: db-opsmx
-  name: db-opsmx
+    app: oes-db
+  name: oes-db
 spec:
   podManagementPolicy: OrderedReady
   replicas: 1
-  serviceName: db-opsmx
+  serviceName: oes-db
   selector:
     matchLabels:
-      app: db-opsmx
+      app: oes-db
   template:
     metadata:
       labels:
-        app: db-opsmx
+        app: oes-db
     spec:
       imagePullSecrets:
         - name: opsmx11-secret
       containers:
       - image: opsmxdev/ubi8-autopilot-db:v1.5
         imagePullPolicy: IfNotPresent
-        name: db-opsmx
+        name: oes-db
         ports:
         - containerPort: 5432
           protocol: TCP
         volumeMounts:
         - mountPath: "/var/lib/pgsql-pv"
-          name: db-opsmx-postgresql
+          name: oes-db-postgresql
         readinessProbe:
           tcpSocket:
             port: 5432
@@ -38,8 +38,8 @@ spec:
   volumeClaimTemplates:
   - metadata:
       labels:
-        app: db-opsmx
-      name: db-opsmx-postgresql
+        app: oes-db
+      name: oes-db-postgresql
     spec:
       accessModes:
       - ReadWriteOnce

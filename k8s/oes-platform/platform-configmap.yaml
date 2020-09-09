@@ -13,7 +13,7 @@ data:
           maximumPoolSize: 5
         test-on-borrow: true
         testWhileIdle: true
-        url: jdbc:postgresql://db-opsmx:5432/platformdb
+        url: jdbc:postgresql://oes-db:5432/platformdb
         username: postgres
         password: networks123
       jpa:
@@ -43,7 +43,7 @@ data:
           maximumPoolSize: 5
         test-on-borrow: true
         testWhileIdle: true
-        url: jdbc:postgresql://db-opsmx:5432/platformdb
+        url: jdbc:postgresql://oes-db:5432/platformdb
         username: postgres
         password: networks123
       jpa:
@@ -73,12 +73,12 @@ data:
           maximumPoolSize: 5
         test-on-borrow: true
         testWhileIdle: true
-        url: jdbc:postgresql://db-opsmx:5432/platformdb
+        url: jdbc:postgresql://oes-db:5432/platformdb
         username: postgres
         password: networks123
       jpa:
         hibernate:
-          ddl-auto: update
+          ddl-auto: create-drop
         propertieshibernate:
           dialect: org.hibernate.dialect.PostgreSQLDialect
         show-sql: true
@@ -116,7 +116,7 @@ data:
           maximumPoolSize: 5
         test-on-borrow: true
         testWhileIdle: true
-        url: jdbc:postgresql://db-opsmx:5432/platformdb
+        url: jdbc:postgresql://oes-db:5432/platformdb
         username: postgres
         password: networks123
       jpa:

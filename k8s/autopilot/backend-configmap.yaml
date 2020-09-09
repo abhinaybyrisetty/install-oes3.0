@@ -214,7 +214,7 @@ data:
                    <!-- Settings for a database -->
                    <property name="connection.driver_class">org.postgresql.Driver</property>
                    <!--for kubernet service-->
-                   <property name="connection.url">jdbc:postgresql://db-opsmx:5432/opsmx</property>
+                   <property name="connection.url">jdbc:postgresql://oes-db:5432/opsmx</property>
                    <property name="connection.username">postgres</property>
                    <property name="connection.password">networks123</property>
 
