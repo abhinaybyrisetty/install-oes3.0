@@ -42,6 +42,13 @@ spec:
         volumeMounts:
         - name: gate-volume
           mountPath: /opt/spinnaker/config
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1500Mi"
+            cpu: "1500m"
         readinessProbe:
           tcpSocket:
             port: 8084

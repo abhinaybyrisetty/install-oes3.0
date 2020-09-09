@@ -51,7 +51,7 @@ spec:
             cpu: "300m"
           limits:
             memory: "500Mi"
-            cpu: "600m"
+            cpu: "1500m"
       imagePullSecrets:
       - name: opsmx11-secret
       volumes:
