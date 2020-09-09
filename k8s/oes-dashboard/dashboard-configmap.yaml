@@ -15,7 +15,7 @@ data:
         oes:
           url: http://oes-sapor:8085
         autopilot:
-          url: http://autopilot:8090
+          url: http://oes-autopilot:8090
         name: dashboardservice
         platformservice:
           url: http://oes-platform:8095/

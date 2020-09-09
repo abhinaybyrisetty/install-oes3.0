@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: autopilot
+  name: oes-autopilot
   labels:
-    app: autopilot
+    app: oes-autopilot
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: autopilot
+      app: oes-autopilot
   template:
     metadata:
       labels:
-        app: autopilot
+        app: oes-autopilot
     spec:
       volumes:
-        - name: backend-config-volume
+        - name: autopilot-config-volume
           configMap:
-            name: autopilotbackendconfig
+            name: oes-autopilot-config
       imagePullSecrets:
         - name: opsmx11-secret
       containers:
-        - image: opsmx11/autopilot:master-202009081323
+        - image: opsmx11/autopilot:master-202009090707
           imagePullPolicy: IfNotPresent
-          name: autopilot
+          name: oes-autopilot
           ports:
             - containerPort: 8090
               name: backend
@@ -32,10 +32,10 @@ spec:
               name: metricfetcher
               protocol: TCP
           volumeMounts:
-          - name: backend-config-volume
-            mountPath: /opt/opsmx/application.properties
-            subPath: application.properties
-          - name: backend-config-volume
+          - name: autopilot-config-volume
+            mountPath: /opt/opsmx/autopilot.properties
+            subPath: autopilot.properties
+          - name: autopilot-config-volume
             mountPath: /opt/opsmx/hibernate.cfg.xml
             subPath: hibernate.cfg.xml
           readinessProbe:
