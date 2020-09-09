@@ -23,6 +23,16 @@ data:
       dashboard:
         installation:
           mode: OES-AP
+    management:
+      endpoints:
+        web:
+          base-path: /mgmt
+        exposure:
+          include: health,info
+      endpoint:
+        health:
+          show-details: always
+          show-components: always
 
 kind: ConfigMap
 metadata:

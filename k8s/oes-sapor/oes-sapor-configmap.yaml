@@ -5,6 +5,9 @@ data:
       port: 8085
       compression:
         enabled: true
+    oes:
+      rbac:
+        enabled: false
     feign:
       client:
         config:
@@ -16,6 +19,21 @@ data:
           name: platformservice
           url: http://oes-platform:8095/
   persistence.yml: |
+    management:
+      endpoint:
+        health:
+          enabled: true
+          show-details: always
+      endpoints:
+        jmx:
+          exposure:
+            include: '*'
+        web:
+          exposure:
+            include: '*'
+          base-path: /actuator
+        cors:
+          allowed-origins: true
     spring:
       datasource:
         url: jdbc:postgresql://oes-db:5432/oesdb
@@ -29,6 +47,7 @@ data:
           idle-timeout: 600000
           max-lifetime: 1000
           maxLifetime: 1800000
+          maximumPoolSize: 3
       jpa:
         show-sql: true
         hibernate:
@@ -36,7 +55,6 @@ data:
         properties:
           hibernate:
             dialect: org.hibernate.dialect.PostgreSQLDialect
-
     logging:
       level:
         com:
