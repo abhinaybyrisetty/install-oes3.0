@@ -21,13 +21,6 @@ spec:
         ports:
         - containerPort: 8094
           protocol: TCP
-        env:
-        - name: CONF_DIR
-          value: /opsmx/conf/
-        volumeMounts:
-        - mountPath: /opsmx/conf/application.yml
-          name: dashboard-config
-          subPath: application.yml
         resources:
           requests:
             memory: "500Mi"
@@ -48,7 +41,3 @@ spec:
           periodSeconds: 60
       imagePullSecrets:
       - name: opsmx11-secret
-      volumes:
-      - name: dashboard-config
-        configMap:
-          name: oes-dashboard-config
