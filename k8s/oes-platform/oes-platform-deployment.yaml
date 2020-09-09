@@ -20,7 +20,7 @@ spec:
         image: busybox:1.28
         command: ['sh', '-c', "sleep 30;until nslookup oes-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for db-opsmx to be up and running; sleep 2; done"]
       containers:
-      - image: opsmx11/platform-service:master-202009071200
+      - image: opsmx11/platform-service:master-202009091605
         name: platform-service
         ports:
         - containerPort: 8095
@@ -37,6 +37,12 @@ spec:
             port: 8095
           initialDelaySeconds: 10
           periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /mgmt/health
+            port: 8095
+          initialDelaySeconds: 60
+          periodSeconds: 60
         resources:
           requests:
             memory: "500Mi"

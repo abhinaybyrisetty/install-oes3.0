@@ -16,7 +16,7 @@ spec:
         app: oes-dashboard
     spec:
       containers:
-      - image: opsmx11/dashboard-service:master-202009090815
+      - image: opsmx11/dashboard-service:master-202009091605
         name: dashboard-service
         ports:
         - containerPort: 8094
@@ -35,6 +35,17 @@ spec:
           limits:
             memory: "1000Mi"
             cpu: "1000m"
+        readinessProbe:
+          tcpSocket:
+            port: 8094
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /mgmt/health
+            port: 8094
+          initialDelaySeconds: 30
+          periodSeconds: 60
       imagePullSecrets:
       - name: opsmx11-secret
       volumes:
