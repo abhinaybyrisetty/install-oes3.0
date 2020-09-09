@@ -17,22 +17,6 @@ spec:
         app: oes
         component: oes-sapor
     spec:
-      initContainers:
-      - env:
-        - name: EXTERNAL_IP_CHECK_DELAY
-          value: "120"
-        - name: SPINNAKER_SETUP_DELAY
-          value: "10"
-        image: opsmx11/oes-init:v2
-        imagePullPolicy: Always
-        name: oes-sapor-init
-        command: ["/home/config_endpoint.sh"]
-        args: ["sapor"]
-        volumeMounts:
-        - mountPath: /config
-          name: config-temp
-        - mountPath: /opt/opsmx/
-          name: api-volume
       containers:
       - image: opsmx11/sapor:v0.202009050942
         name: oes-sapor
@@ -40,8 +24,15 @@ spec:
         - containerPort: 8085
           protocol: TCP
         volumeMounts:
-        - name: api-volume
-          mountPath: /opt/opsmx/
+        - name: sapor-config-volume
+          mountPath: /opt/opsmx/spinnaker.yml
+          subPath: spinnaker.yaml
+        - name: sapor-config-volume
+          mountPath: /opt/opsmx/oes.yml
+          subPath: oes.yml
+        - name: sapor-config-volume
+          mountPath: /opt/opsmx/persistence.yml
+          subPath: persistence.yml
         readinessProbe:
           failureThreshold: 6
           tcpSocket:
@@ -57,15 +48,13 @@ spec:
         resources:
           requests:
             memory: "100Mi"
-            cpu: "100m"
+            cpu: "300m"
           limits:
             memory: "500Mi"
-            cpu: "500m"
+            cpu: "1000m"
       imagePullSecrets:
       - name: opsmx11-secret
       volumes:
       - configMap:
           name: oes-sapor-config
-        name: config-temp
-      - emptyDir: {}
-        name: api-volume
+        name: sapor-config-volume
