@@ -32,12 +32,6 @@ spec:
         - mountPath: /opsmx/conf/application.yml
           name: platform-config
           subPath: application.yml
-        - mountPath: /opsmx/conf/userGroups.yml
-          name: platform-config
-          subPath: userGroups.yml
-        - mountPath: /opsmx/conf/users.yml
-          name: platform-config
-          subPath: users.yml
         readinessProbe:
           tcpSocket:
             port: 8095

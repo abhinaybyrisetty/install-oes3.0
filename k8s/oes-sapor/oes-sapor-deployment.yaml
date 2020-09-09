@@ -18,7 +18,7 @@ spec:
         component: oes-sapor
     spec:
       containers:
-      - image: opsmx11/sapor:v0.202009050942
+      - image: opsmx11/sapor:v0.202009091920
         name: oes-sapor
         ports:
         - containerPort: 8085
@@ -51,7 +51,7 @@ spec:
             cpu: "300m"
           limits:
             memory: "500Mi"
-            cpu: "1000m"
+            cpu: "600m"
       imagePullSecrets:
       - name: opsmx11-secret
       volumes:

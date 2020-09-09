@@ -34,7 +34,7 @@ spec:
         - mountPath: /var/www/html/assets/config
           name: config-dir
       containers:
-      - image: opsmx11/oes-ui:v0.202009082326
+      - image: opsmx11/oes-ui:v0.202009091926
         name: oes-ui
         ports:
         - containerPort: 80
