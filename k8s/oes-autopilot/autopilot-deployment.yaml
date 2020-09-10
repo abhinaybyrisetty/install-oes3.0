@@ -21,7 +21,7 @@ spec:
       imagePullSecrets:
         - name: opsmx11-secret
       containers:
-        - image: opsmx11/autopilot:master-202009090707
+        - image: opsmx11/autopilot:master-202009100905
           imagePullPolicy: IfNotPresent
           name: oes-autopilot
           ports:
@@ -35,9 +35,6 @@ spec:
           - name: autopilot-config-volume
             mountPath: /opt/opsmx/autopilot.properties
             subPath: autopilot.properties
-          - name: autopilot-config-volume
-            mountPath: /opt/opsmx/hibernate.cfg.xml
-            subPath: hibernate.cfg.xml
           readinessProbe:
             tcpSocket:
               port: 8090
