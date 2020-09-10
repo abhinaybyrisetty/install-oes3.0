@@ -1,34 +1,17 @@
 apiVersion: v1
 data:
   autopilot.properties: |
+    #Set it to false, if RBAC is disabled
     rbacEnabled=true
-    oes.platform.baseUrl=http://oes-platform:8095
 
-    #ldap login attributes
-    isLdapAuthEnabled=false
-    ldap.url=
-    ldap.base.dn=
-    ldap.authPrepend=
-    ldap.userPrepend=
-    ldap.user.filter.pattern=
-    ldap.admin.user.groups=Administrators
-    ldap.userIdentity=cn
-    ldap.userGroupIdentity=memberOf
-    ldap.userDisplayName=displayName
-
-    #ldap.userIdentity=cn
-    #ldap.userGroupIdentity=memberOf
+    #Enable Build Analysis
+    build.analysis=false
 
     #SSL certificate details
     #server.ssl.key-store: keystore.p12
     #server.ssl.key-store-password: OpsMx@123
     #server.ssl.keyStoreType: PKCS12
     #server.ssl.keyAlias: tomcat
-
-    aws.s3.client.accessKeyId=AWS_ACCESSKEY_ID
-    aws.s3.client.accessKeySecret=AWS_ACESSKEY_SECRET
-    aws.s3.client.serviceEndpoint=http://minio:9000
-    aws.s3.client.regionName=us-east-1
 
   hibernate.cfg.xml: |
     <?xml version="1.0" encoding="UTF-8"?>
