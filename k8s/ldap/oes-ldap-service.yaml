@@ -9,7 +9,7 @@ spec:
   ports:
   - name: oes-ldap
     protocol: TCP
-    port: 9595
+    port: 3389
     targetPort: 3389
   selector:
     app: oes-ldap

@@ -15,15 +15,12 @@ data:
       dashboard:
         baseUrl: http://oes-dashboard:8094
         enabled: true
-    security:
-      basic:
-        enabled: true
       user: {}
     cors:
       allowed-origins-pattern: ^https?://(?:localhost|OES_UI_LOADBALANCER_IP|opsmx.com)(?::[1-9]\d*)?/?
     ldap:
       enabled: true
-      url: ldap://oes-ldap:9595/DC=example,DC=com
+      url: ldap://oes-ldap:3389/DC=example,DC=com
       userDnPattern: uid={0},ou=Users
     file:
       enabled: false

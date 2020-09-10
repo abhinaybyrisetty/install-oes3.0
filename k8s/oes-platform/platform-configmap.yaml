@@ -33,7 +33,7 @@ data:
       adminDn: cn=admin,dc=example,dc=com
       adminPassword: adminroot123
       baseDn: dc=example,dc=com
-      url: ldap://oes-ldap:9595
+      url: ldap://oes-ldap:3389
       userDisplayName: displayName
       userFilterPattern: (&(uid=USERNAME))
       userGroupIdentity: memberOf
