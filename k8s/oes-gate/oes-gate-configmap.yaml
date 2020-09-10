@@ -6,7 +6,7 @@ data:
         baseUrl: http://oes-sapor:8085
         enabled: true
       autopilot:
-        baseUrl: http://autopilot:8090
+        baseUrl: http://oes-autopilot:8090
         enabled: true
       platform:
         baseUrl: http://oes-platform:8095
