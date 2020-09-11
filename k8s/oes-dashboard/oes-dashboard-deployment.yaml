@@ -16,7 +16,7 @@ spec:
         app: oes-dashboard
     spec:
       containers:
-      - image: opsmx11/dashboard-service:master-202009100512
+      - image: opsmx11/dashboard-service:master-202009111331
         name: dashboard-service
         ports:
         - containerPort: 8094
