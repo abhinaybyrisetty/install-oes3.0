@@ -1,74 +1,23 @@
 apiVersion: v1
 data:
-  oes.yml: |
-    server:
-      port: 8085
-      compression:
-        enabled: true
+  application.yml: |
     oes:
       rbac:
-        enabled: false
-    feign:
-      client:
-        config:
-          default:
-            connectTimeout: 5000
-            readTimeout: 5000
-            loggerLevel: basic
-        platformservice:
-          name: platformservice
-          url: http://oes-platform:8095/
-  persistence.yml: |
-    management:
-      endpoint:
-        health:
-          enabled: true
-          show-details: always
-      endpoints:
-        jmx:
-          exposure:
-            include: '*'
-        web:
-          exposure:
-            include: '*'
-          base-path: /actuator
-        cors:
-          allowed-origins: true
+        enabled: true
+    spinnaker:
+      authnEnabled: true
+      baseurl: http://spin-gate.oes-spin:8084
+      username: admin
+      password: opsmx@123
+      externalBaseUrl: http://40.125.102.163:8084
+      adminLoginEnabled: false
+      adminUsername:
+      adminPassword:
     spring:
       datasource:
         url: jdbc:postgresql://oes-db:5432/oesdb
         username: postgres
         password: networks123
-        driver-class-name: org.postgresql.Driver
-        testWhileIdle: true
-        test-on-borrow: true
-        hikari:
-          connection-timeout: 30000
-          idle-timeout: 600000
-          max-lifetime: 1000
-          maxLifetime: 1800000
-          maximumPoolSize: 3
-      jpa:
-        show-sql: true
-        hibernate:
-          ddl-auto: update # delete this property after table creation
-        properties:
-          hibernate:
-            dialect: org.hibernate.dialect.PostgreSQLDialect
-    logging:
-      level:
-        com:
-          zaxxer:
-            hikari: DEBUG
-  spinnaker.yaml: |
-    spinnaker:
-      baseurl: http://40.125.102.163:8084
-      username: admin
-      password: opsmx@123
-      adminLoginEnabled: false
-      adminUsername:
-      adminPassword:
-      authnEnabled: true
 kind: ConfigMap
 metadata:
   name: oes-sapor-config

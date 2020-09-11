@@ -18,7 +18,7 @@ spec:
         component: oes-sapor
     spec:
       containers:
-      - image: opsmx11/sapor:v0.202009101448
+      - image: opsmx11/sapor:v0.202009101951
         name: oes-sapor
         ports:
         - containerPort: 8085

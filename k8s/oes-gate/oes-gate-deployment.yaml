@@ -34,7 +34,7 @@ spec:
         - mountPath: /opt/spinnaker/config
           name: gate-volume
       containers:
-      - image: opsmx11/oes-gate:v0.202009031444
+      - image: opsmx11/oes-gate:v0.202009101611
         name: oes-gate
         ports:
         - containerPort: 8084
