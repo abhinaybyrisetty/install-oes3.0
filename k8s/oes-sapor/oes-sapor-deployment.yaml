@@ -18,21 +18,15 @@ spec:
         component: oes-sapor
     spec:
       containers:
-      - image: opsmx11/sapor:v0.202009101951
+      - image: opsmx11/sapor:v0.202009111046
         name: oes-sapor
         ports:
         - containerPort: 8085
           protocol: TCP
         volumeMounts:
         - name: sapor-config-volume
-          mountPath: /opt/opsmx/spinnaker.yml
-          subPath: spinnaker.yaml
-        - name: sapor-config-volume
-          mountPath: /opt/opsmx/oes.yml
-          subPath: oes.yml
-        - name: sapor-config-volume
-          mountPath: /opt/opsmx/persistence.yml
-          subPath: persistence.yml
+          mountPath: /opt/opsmx/application.yml
+          subPath: application.yml
         readinessProbe:
           failureThreshold: 6
           tcpSocket:
