@@ -7,14 +7,10 @@ metadata:
   name: oes-gate-ingress
 spec:
   rules:
-  - host: nightly-oes3-gate.opsmx.com
+  - host: <identifier>.engineering.opsmx.net
     http:
       paths:
       - backend:
           serviceName: oes-gate
           servicePort: 8084
         path: /
-  tls:
-  - hosts:
-    - nightly-oes3-gate.opsmx.com
-    secretName: godaddy

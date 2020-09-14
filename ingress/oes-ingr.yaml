@@ -7,18 +7,10 @@ metadata:
   name: oes-ui-ingress
 spec:
   rules:
-  - host: nightly-oes3.opsmx.com
+  - host: <identifier>.engineering.opsmx.net
     http:
       paths:
       - backend:
           serviceName: oes-ui
           servicePort: 80
         path: /
-  tls:
-  - hosts:
-    - nightly-oes3.opsmx.com
-    secretName: godaddy
-status:
-  loadBalancer:
-    ingress:
-    - ip: 40.90.217.183
