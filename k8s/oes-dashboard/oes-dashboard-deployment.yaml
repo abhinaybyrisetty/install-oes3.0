@@ -9,22 +9,21 @@ spec:
   selector:
     matchLabels:
       app: oes-dashboard
-  strategy: {}
   template:
     metadata:
       labels:
         app: oes-dashboard
     spec:
       containers:
-      - image: opsmx11/dashboard-service:master-202009141153
+      - image: opsmx11/dashboard-service:master-202009150912
         name: dashboard-service
         ports:
         - containerPort: 8094
           protocol: TCP
         volumeMounts:
-        - mountPath: /opsmx/conf/application.yml
+        - mountPath: /opsmx/conf/dashboard.yml
           name: dashboard-config
-          subPath: application.yml
+          subPath: dashboard.yml
         resources:
           requests:
             memory: "500Mi"
@@ -35,7 +34,7 @@ spec:
         readinessProbe:
           tcpSocket:
             port: 8094
-          initialDelaySeconds: 10
+          initialDelaySeconds: 30
           periodSeconds: 5
         livenessProbe:
           httpGet:
