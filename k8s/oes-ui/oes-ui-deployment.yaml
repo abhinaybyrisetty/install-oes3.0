@@ -21,8 +21,6 @@ spec:
       - env:
         - name: EXTERNAL_IP_CHECK_DELAY
           value: "120"
-        - name: SPINNAKER_SETUP_DELAY
-          value: "10"
         image: opsmx11/oes-init:v2
         imagePullPolicy: Always
         name: oes-ui-init
