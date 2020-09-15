@@ -34,7 +34,7 @@ data:
         org.springframework.security: DEBUG
         org.springframework.web: DEBUG
     redis:
-      connection: redis://redis-master:6379
+      connection: redis://:password@redis-master:6379
 
 kind: ConfigMap
 metadata:

@@ -22,8 +22,7 @@ data:
       userIdentity: cn
       userPrepend: uid=USERNAME,ou=Users
     redis:
-      hostname: redis-master
-      port: 6379
+      connection: redis://:password@redis-master:6379
 kind: ConfigMap
 metadata:
   name: oes-platform-config
