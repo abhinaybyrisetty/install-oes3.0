@@ -20,8 +20,6 @@ spec:
       - env:
         - name: REDIS_REPLICATION_MODE
           value: master
-        - name: REDIS_DISABLE_COMMANDS
-          value: FLUSHDB,FLUSHALL
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
