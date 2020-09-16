@@ -17,6 +17,10 @@ spec:
         app: oes
         component: oes-sapor
     spec:
+      initContainers:
+      - name: db-check
+        image: busybox:1.28
+        command: ['sh', '-c', "sleep 60;until nslookup oes-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for db-opsmx to be up and running; sleep 2; done"]
       containers:
       - image: opsmx11/sapor:v0.202009141117
         name: oes-sapor
