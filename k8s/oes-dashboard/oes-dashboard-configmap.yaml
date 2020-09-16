@@ -1,7 +1,7 @@
 
 apiVersion: v1
 data:
-  dashboard.yml: |
+  dashboard-local.yml: |
     opsmx:
       dashboard:
         installation:

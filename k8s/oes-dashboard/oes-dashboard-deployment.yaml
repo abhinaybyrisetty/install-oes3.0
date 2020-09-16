@@ -21,9 +21,8 @@ spec:
         - containerPort: 8094
           protocol: TCP
         volumeMounts:
-        - mountPath: /opsmx/conf/dashboard.yml
+        - mountPath: /opsmx/conf/
           name: dashboard-config
-          subPath: dashboard.yml
         resources:
           requests:
             memory: "500Mi"

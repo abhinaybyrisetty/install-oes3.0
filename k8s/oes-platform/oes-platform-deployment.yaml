@@ -29,9 +29,9 @@ spec:
         - name: CONF_DIR
           value: /opsmx/conf/
         volumeMounts:
-        - mountPath: /opsmx/conf/platform.yml
+        - mountPath: /opsmx/conf/platform-local.yml
           name: platform-config
-          subPath: platform.yml
+          subPath: platform-local.yml
         readinessProbe:
           tcpSocket:
             port: 8095
