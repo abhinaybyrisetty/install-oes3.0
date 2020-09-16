@@ -1,0 +1,113 @@
+version: '3.4'
+
+volumes:
+  opsmxdataSep16:
+    external: true
+
+services:
+  oes-db:
+    image: opsmxdev/ubi8-autopilot-db:v1.5
+    container_name: oes-db
+    restart: always
+    volumes:
+      - opsmxdataSep16:/var/lib/pgsql-pv
+    ports:
+      - "5432:5432"
+
+  oes-ldap:
+    image: skandragon/ldap-testing-db:latest
+    container_name: oes-ldap
+    restart: always
+    ports:
+      - "9595:3389"
+
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  oes-autopilot:
+    image: opsmx11/autopilot:master-202009160811
+    container_name: oes-autopilot
+    restart: always
+    volumes:
+      - ./autopilot/autopilot-local.properties:/opsmx/conf/autopilot-local.properties
+    ports:
+      - "8090:8090"
+      - "9090:9090"
+    expose:
+      - "8090"
+      - "9090"
+    links:
+      - "oes-db:oes-db"
+    depends_on:
+      - oes-db
+
+  oes-platform:
+    image: opsmx11/platform-service:master-202009161240
+    container_name: oes-platform
+    restart: always
+    volumes:
+      - ./platform/platform-local.yml:/opsmx/conf/platform-local.yml
+    expose:
+      - "8095"
+    ports:
+      - "8095:8095"
+    links:
+      - "oes-db:oes-db"
+    depends_on:
+      - oes-db
+
+  oes-dashboard:
+    image: opsmx11/dashboard-service:master-202009160921
+    container_name: oes-dashboard
+    restart: always
+    volumes:
+      - ./dashboard/dashboard-local.yml:/opsmx/conf/dashboard-local.yml
+    ports:
+      - "8094:8094"
+    expose:
+      - "8094"
+   
+  oes-sapor:
+    image: opsmx11/sapor:v0.202009141117
+    container_name: oes-sapor
+    restart: always
+    volumes:
+      - ./sapor/application.yml:/opt/opsmx/application.yml
+    ports:
+      - "8085:8085"
+    expose:
+      - "8085"
+    depends_on:
+      - oes-db
+
+  oes-ui:
+    image: opsmx11/oes-ui:v0.202009161451
+    container_name: oes-ui
+    restart: always
+    volumes:
+      - ./ui/app-config.json:/var/www/html/assets/config/app-config.json
+    ports:
+      - "4200:80"
+
+  opa:
+    image: openpolicyagent/opa:latest
+    container_name: opa
+    restart: always
+    ports:
+      - "8181:8181"
+    command: ["run", "--server"]
+    
+  oes-gate:
+    image: opsmx11/oes-gate:v0.202009161034
+    container_name: oes-gate
+    restart: always
+    volumes:
+      - ./gate/gate.yml:/opt/spinnaker/config/gate.yml
+    ports:
+      - "8084:8084"
+    depends_on:
+      - redis

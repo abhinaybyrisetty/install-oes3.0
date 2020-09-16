@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://oes-db:5432/platformdb
+    username: postgres
+    password: networks123
+rbacEnabled: true
+userGroup:
+   adminGroups: admin, Administrators
+user:
+  source: ldap
+ldap:
+  adminDn: cn=admin,dc=example,dc=com
+  adminPassword: adminroot123
+  baseDn: dc=example,dc=com
+  url: ldap://oes-ldap:3389
+  userDisplayName: displayName
+  userFilterPattern: (&(uid=USERNAME))
+  userGroupIdentity: memberOf
+  userIdentity: cn
+  userPrepend: uid=USERNAME,ou=Users
+redis:
+  connection: redis://redis:6379

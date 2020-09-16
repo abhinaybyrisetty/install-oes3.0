@@ -1,0 +1,17 @@
+oes:
+  rbac:
+    enabled: true
+spinnaker:
+  authnEnabled: true
+  baseurl: http://40.125.102.163:8084
+  username: admin
+  password: opsmx@123
+  externalBaseUrl: http://40.125.102.163:8084
+  adminLoginEnabled: false
+  adminUsername:
+  adminPassword:
+spring:
+  datasource:
+    url: jdbc:postgresql://oes-db:5432/oesdb
+    username: postgres
+    password: networks123
