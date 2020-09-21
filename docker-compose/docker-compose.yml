@@ -29,7 +29,7 @@ services:
       - "6379:6379"
 
   oes-autopilot:
-    image: opsmx11/autopilot:master-202009160811
+    image: opsmx11/oes-autopilot:v3.0.0-rc1-202009211021
     container_name: oes-autopilot
     restart: always
     volumes:
@@ -46,7 +46,7 @@ services:
       - oes-db
 
   oes-platform:
-    image: opsmx11/platform-service:master-202009161240
+    image: opsmx11/oes-platform:v3.0.0-rc1-202009211008
     container_name: oes-platform
     restart: always
     volumes:
@@ -61,7 +61,7 @@ services:
       - oes-db
 
   oes-dashboard:
-    image: opsmx11/dashboard-service:master-202009160921
+    image: opsmx11/oes-dashboard:v3.0.0-rc1-202009210948
     container_name: oes-dashboard
     restart: always
     volumes:
@@ -70,9 +70,9 @@ services:
       - "8094:8094"
     expose:
       - "8094"
-   
+
   oes-sapor:
-    image: opsmx11/sapor:v0.202009141117
+    image: opsmx11/oes-sapor:v3.0.0-rc1-202009211012
     container_name: oes-sapor
     restart: always
     volumes:
@@ -85,7 +85,7 @@ services:
       - oes-db
 
   oes-ui:
-    image: opsmx11/oes-ui:v0.202009161451
+    image: opsmx11/oes-ui:v3.0.0-rc1-202009210956
     container_name: oes-ui
     restart: always
     volumes:
@@ -100,9 +100,9 @@ services:
     ports:
       - "8181:8181"
     command: ["run", "--server"]
-    
+
   oes-gate:
-    image: opsmx11/oes-gate:v0.202009161034
+    image: opsmx11/oes-gate:v3.0.0-rc1-202009211015
     container_name: oes-gate
     restart: always
     volumes:

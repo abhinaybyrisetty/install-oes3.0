@@ -25,7 +25,7 @@ spec:
         image: busybox:1.28
         command: ['sh', '-c', "until nslookup oes-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for oes-db to be up and running; sleep 2; done"]
       containers:
-        - image: opsmx11/autopilot:master-202009150406
+        - image: opsmx11/oes-autopilot:v3.0.0-rc1-202009211021
           imagePullPolicy: IfNotPresent
           name: oes-autopilot
           ports:
