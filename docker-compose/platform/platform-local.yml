@@ -4,6 +4,11 @@ spring:
     username: postgres
     password: networks123
 rbacEnabled: true
+supportedFeatures: 
+    - deployment-verification
+    - services
+    - releases
+    - policies
 userGroup:
    adminGroups: admin, Administrators
 user:
