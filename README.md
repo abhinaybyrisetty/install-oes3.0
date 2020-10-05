@@ -1,3 +1,7 @@
+# Deprecation notice!
+Use the repo from OpsMx account instead
+https://github.com/OpsMx/install-oes3.0
+
 # OES3.0 installation instructions
 
 ## Instructions to install the entire application
