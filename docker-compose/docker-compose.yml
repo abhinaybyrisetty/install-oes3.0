@@ -1,8 +1,8 @@
 version: '3.4'
 
 volumes:
-  opsmxdataSep16:
-    external: true
+  opsmxdata:
+    name: opsmxdata
 
 services:
   oes-db:
@@ -10,23 +10,17 @@ services:
     container_name: oes-db
     restart: always
     volumes:
-      - opsmxdataSep16:/var/lib/pgsql-pv
-    ports:
-      - "5432:5432"
+      - opsmxdata:/var/lib/pgsql-pv
 
   oes-ldap:
     image: skandragon/ldap-testing-db:latest
     container_name: oes-ldap
     restart: always
-    ports:
-      - "9595:3389"
 
   redis:
     image: redis
     container_name: redis
     restart: always
-    ports:
-      - "6379:6379"
 
   oes-autopilot:
     image: opsmx11/oes-autopilot:v3.0.0-rc1-202009211021
@@ -34,9 +28,6 @@ services:
     restart: always
     volumes:
       - ./autopilot/autopilot-local.properties:/opsmx/conf/autopilot-local.properties
-    ports:
-      - "8090:8090"
-      - "9090:9090"
     expose:
       - "8090"
       - "9090"
@@ -53,8 +44,6 @@ services:
       - ./platform/platform-local.yml:/opsmx/conf/platform-local.yml
     expose:
       - "8095"
-    ports:
-      - "8095:8095"
     links:
       - "oes-db:oes-db"
     depends_on:
@@ -66,8 +55,6 @@ services:
     restart: always
     volumes:
       - ./dashboard/dashboard-local.yml:/opsmx/conf/dashboard-local.yml
-    ports:
-      - "8094:8094"
     expose:
       - "8094"
 
@@ -77,8 +64,6 @@ services:
     restart: always
     volumes:
       - ./sapor/application.yml:/opt/opsmx/application.yml
-    ports:
-      - "8085:8085"
     expose:
       - "8085"
     depends_on:
@@ -97,8 +82,6 @@ services:
     image: openpolicyagent/opa:latest
     container_name: opa
     restart: always
-    ports:
-      - "8181:8181"
     command: ["run", "--server"]
 
   oes-gate:
